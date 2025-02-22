@@ -4,11 +4,13 @@ from .models import ReservationRequest
 class ReservationRequestForm(forms.ModelForm):
     class meta:
         model = ReservationRequest
-        fields = ["first_name",
+        fields =[
+            "first_name",
             "last_name",
-            "email",
+            "phone",
+            "email"
             "date",
             "time",
             "party_size",
-            "phone_number"
+            
         ]
