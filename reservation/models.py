@@ -1,28 +1,28 @@
 from django.db import models
-from django.conf import settings
-from django.utils import timezone
+from phonenumber_field.modelfields import PhoneNumberField
 
 
-class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    text = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now)
-    published_date = models.DateTimeField(blank=True, null=True)
-
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
-
-
+class User(models.Model):
+    first_name = models. CharField(max_length= 50)
+    last_name = models.CharField(max_length=50)
+    email = models.CharField(max_length= 250)
+    phone_number = PhoneNumberField()
+    age = models.PositiveIntegerField()
+    
 class ReservationRequest(models.Model):
-    first_name = models.CharField(max_length = 250)
-    last_name = models.CharField(max_length = 250)
-    email = models.CharField(max_length = 250)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     date = models.DateField()
-    time = models.TimeField
+    time = models.TimeField()
     party_size = models.PositiveIntegerField()
+    duration = models.PositiveIntegerField()
 
+class Boat(models.Model):
+    boat_type = models.CharField(max_length= 250)
+    capacity = models.PositiveIntegerField()
 
-def __str__(self):
-        return self.title
+    def __str__(self):
+        return self.boat_type
+
+class ReservationBoat(models.Model):
+    reservation = models.ForeignKey(ReservationRequest, on_delete=models.CASCADE)
+    boat_type = models.ForeignKey(Boat, on_delete=models.CASCADE)
