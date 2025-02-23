@@ -11,8 +11,7 @@ class User(models.Model):
     
 class ReservationRequest(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    date = models.DateField()
-    time = models.TimeField()
+    date = models.DateTimeField()
     party_size = models.PositiveIntegerField()
     duration = models.PositiveIntegerField()
 
