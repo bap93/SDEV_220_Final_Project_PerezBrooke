@@ -1,5 +1,6 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class User(models.Model):
@@ -13,7 +14,7 @@ class ReservationRequest(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date = models.DateTimeField()
     party_size = models.PositiveIntegerField()
-    duration = models.PositiveIntegerField()
+    duration = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(2)])
 
 class Boat(models.Model):
     boat_type = models.CharField(max_length= 250)

@@ -13,6 +13,9 @@
      
     </head>
     <body>
+        <!--<div class = "banner">
+            <img src="{% static 'images/lake.jpg' %}" alt="Lake banner image">
+        </div>-->
         <div class="container">
             <div class="info-text">
                 <div>
@@ -36,12 +39,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{ reservation_request_form }}
+                    <form method="post" action="{% url 'add_reservation_request' %}">
+                        {% csrf_token %}
+                        {{ reservation_request_form }}
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                
             </div>
             </div>
         </div>

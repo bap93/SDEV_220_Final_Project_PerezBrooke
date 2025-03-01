@@ -10,3 +10,28 @@ class ReservationRequestForm(forms.ModelForm):
             "party_size",
             "duration",
         ]
+        widgets = {
+            "date": forms.DateTimeInput(
+                attrs={
+                    "type": "datetime-local",
+                    "class": "form-control",                   
+                }
+            ),
+
+            "party_size": forms.NumberInput(
+                attrs={
+                    "class": "form-control",
+                    "max": 50,
+                    "min":1,
+                }
+            ),
+
+            "duration": forms.NumberInput(
+                attrs={
+                    "class": "form-control",
+                    "max": 2,
+                    "min": 1,
+                }
+            )
+        }
+        
