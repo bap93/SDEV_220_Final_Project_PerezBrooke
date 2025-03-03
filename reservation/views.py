@@ -10,12 +10,12 @@ import pytz
 
 
 def reservation_info(request):
-    return render(request, "reservation/reservation_info.html", {
-        "reservation_request_form": ReservationRequestForm()
+    return render(request, 'reservation/reservation_info.html', {
+        'reservation_request_form': ReservationRequestForm()
     })
 
 def add_reservation_request(request):
-    if request.method != "POST":
+    if request.method != 'POST':
         raise Http404("This page does not exist")
     
 
@@ -31,7 +31,11 @@ def add_reservation_request(request):
         phone_number = request.POST.get('phone_number')
         num_kayaks = int(request.POST.get('num_kayaks'))
         num_canoes = int(request.POST.get('num_canoes'))
+        # retrieve and validate number of paddle boards
         num_paddle_boards = int(request.POST.get('num_paddle_boards'))
+        
+       
+
         date = request.POST.get('date')
 
         # retrieve and validate party size
@@ -40,14 +44,14 @@ def add_reservation_request(request):
             raise ValueError("Party Size must be between 1 and 50.")
 
         # retriev and validate duration
-        duration = int(request.POST.get("duration"))
+        duration = int(request.POST.get('duration'))
         if(duration <1 or duration >2):
             raise ValueError("Duration must be entered in the form of 1 or 2.")
         
     except (ValueError, TypeError) as e:
-        return render(request, "reservation/reservation_info.html",{
-            "reservation_request_form": form,
-            "error": e
+        return render(request, 'reservation/reservation_info.html',{
+            'reservation_request_form': form,
+            'error': e
         })
 
     kayak = Boat.objects.get(boat_type='Kayak') 

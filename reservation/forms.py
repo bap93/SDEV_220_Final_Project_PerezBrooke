@@ -57,7 +57,7 @@ class ReservationRequestForm(forms.Form):
                 label = "Number of Kayaks",
                 widget = forms.NumberInput( attrs = {
                     'class': 'form-control',
-                    'min': 1
+                    'min': 0
                 })
             ),
             'num_canoes': forms.IntegerField(
@@ -65,7 +65,7 @@ class ReservationRequestForm(forms.Form):
                 label = "Number of Canoes",
                 widget = forms.NumberInput( attrs = {
                     'class': 'form-control',
-                    'min': 1
+                    'min': 0
                 })
             ),
             'num_paddle_boards': forms.IntegerField(
@@ -73,7 +73,7 @@ class ReservationRequestForm(forms.Form):
                 label = "Number of Paddle Boards",
                 widget = forms.NumberInput( attrs = {
                     'class': 'form-control',
-                    'min': 1
+                    'min': 0
                 })
             ),
             'duration': forms.DurationField(
