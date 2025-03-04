@@ -19,50 +19,40 @@ def add_reservation_request(request):
         raise Http404("This page does not exist")
     
 
-
     form = ReservationRequestForm(request.POST)
-    duration = None
-    try: 
-        # add the data to the database
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        age = request.POST.get('age')
-        email = request.POST.get('email')
-        phone_number = request.POST.get('phone_number')
-        num_kayaks = int(request.POST.get('num_kayaks'))
-        num_canoes = int(request.POST.get('num_canoes'))
-        # retrieve and validate number of paddle boards
-        num_paddle_boards = int(request.POST.get('num_paddle_boards'))
-        
-       
-
-        date = request.POST.get('date')
-
-        # retrieve and validate party size
-        party_size = int(request.POST.get('party_size'))
-        if( party_size < 1 or party_size > 50 ):
-            raise ValueError("Party Size must be between 1 and 50.")
-
-        # retriev and validate duration
-        duration = int(request.POST.get('duration'))
-        if(duration <1 or duration >2):
-            raise ValueError("Duration must be entered in the form of 1 or 2.")
-        
-    except (ValueError, TypeError) as e:
-        return render(request, 'reservation/reservation_info.html',{
-            'reservation_request_form': form,
-            'error': e
+    
+    if not form.is_valid():
+        return render(request, 'reservation/reservation_info.html', {
+            'reservation_request_form': form
         })
+
+
+    # get cleaned data
+    duration = form.cleaned_data['duration']
+    party_size = form.cleaned_data['party_size']
+    first_name = form.cleaned_data['first_name']
+    last_name = form.cleaned_data['last_name']
+    age = form.cleaned_data['age']
+    email = form.cleaned_data['email']
+    phone_number = form.cleaned_data['phone_number']
+    num_kayaks = form.cleaned_data['num_kayaks']
+    num_canoes = form.cleaned_data['num_canoes']
+    num_paddle_boards = form.cleaned_data['num_paddle_boards']
+    date = form.cleaned_data['date']
+
+    #duration = None
+    #try: 
+        # add the data to the database
 
     kayak = Boat.objects.get(boat_type='Kayak') 
     canoe = Boat.objects.get(boat_type='Canoe') 
     paddle_board = Boat.objects.get(boat_type='Paddle Board') 
 
     # Convert date string to be a timezone aware datetime object 
-    date_with_timezone = timezone.make_aware(
-        datetime.strptime(date, '%Y-%m-%dT%H:%M'),
-        pytz.timezone('US/Eastern')
-    )
+    #date_with_timezone = timezone.make_aware(
+    #    datetime.strptime(date, '%Y-%m-%dT%H:%M'),
+    #    pytz.timezone('US/Eastern')
+    #)
 
     try:
         with transaction.atomic():
@@ -78,8 +68,8 @@ def add_reservation_request(request):
             # Step 2: Add information to the ReservationRequest table
             reservation = ReservationRequest.objects.create(
                 user=user,
-                date=date_with_timezone,
-                #date=date,
+                #date=date_with_timezone,
+                date=date,
                 party_size=party_size,
                 duration=duration
             )
