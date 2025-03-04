@@ -1,14 +1,16 @@
-<html>
+{% extends 'reservation/base.html' %}
+{% block content %}
+    <div class = 'sucess-card'>
     <h1>
-        Your reservation request has been submitted! 
+        Reservation Reqeuest Recieved! 
     </h1>
+    <p class = 'confirmation-message'>Your reservation request has been submitted successfully, you will be contacted soon.</p>
     {% if reservation_data %}
-        <h2>Your Reservation:</h2>
-        <ul>
+        <div class = 'reservation-details'></div>
             {% for key, value in reservation_data.items %}
-                <li><strong>{{key}}:</strong>{{value}}</li>
+                <p><strong>{{key|title}}:</strong>{{value}}</p>
             {% endfor %}
-        </ul>
+        </div>
     {% endif %}
-
-</html>
+    
+{% endblock %}
