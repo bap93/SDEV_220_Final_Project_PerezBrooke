@@ -5,6 +5,7 @@ from django.db import transaction
 from .models import User, ReservationBoat, ReservationRequest, Boat
 from datetime import datetime
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 import pytz
 
 
@@ -112,3 +113,11 @@ def add_reservation_request(request):
     except Exception as e:
         # If any error occurs, the transaction will be rolled back
         raise Exception(f"Error occurred adding reservation: {e}")
+
+@login_required    
+def admin_reservation_list(request):
+    reservation_requests = ReservationRequest.objects.all()
+
+    return render(request, 'reservation/admin_reservation_list.html', {
+        'reservation_requests': reservation_requests
+    })
