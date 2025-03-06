@@ -22,9 +22,12 @@
                     <li>Paddle Boards: {{ req|get_boat_count:"Paddle Board" }}</li>
                 </ul>
             </div>
-            <hr>
+            <div class ='card-footer d flex justify content-end'>
+                    <a href="mailto:email@example.com?subject=Made-Up Boathouse reservation request" class="btn btn-primary me-2">Email
+                    </a>
+                <button class="btn btn-danger">Delete</button>   
+            </div>
         </div>
-        </li>
     {% empty %}
         <li>No Upcoming Reservation Requests.</li>
     {% endfor %}

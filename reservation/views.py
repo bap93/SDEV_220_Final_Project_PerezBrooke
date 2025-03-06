@@ -26,6 +26,11 @@ def add_reservation_request(request):
         return render(request, 'reservation/reservation_info.html', {
             'reservation_request_form': form
         })
+    
+    date = form.cleaned_data['date']
+    if date.hour <8 or date.hour >=18: 
+        form.add_error('date', 'Please make your request for between 8am and 6pm')
+        return render(request, 'reservation/reservation_info.html', {'reservation_request_form':form})
 
 
     # get cleaned data
@@ -121,3 +126,4 @@ def admin_reservation_list(request):
     return render(request, 'reservation/admin_reservation_list.html', {
         'reservation_requests': reservation_requests
     })
+
