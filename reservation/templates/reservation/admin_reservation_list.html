@@ -4,16 +4,13 @@
 {% block content %}
 <div class="container">
     <div class="ml-auto">
+        <!--logout button when clicked will log user out and redirect them to reservation_info-->
         <form action="{% url 'logout' %}" method="post" style="display: inline;">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger">Logout</button>
         </form>
-        <script>
-            if (window.history.replaceState){
-                window.history.replaceState(null, null, window.location.href);
-            }
-        </script>
     </div>
+    <!--each card holds a single reservation request from the database-->
     <h2 class = 'mb-3'>Reservation Requests</h2>
     {% for req in reservation_requests %}
         <div class="card mb-3 shadow-sm">
@@ -34,11 +31,22 @@
                 </ul>
             </div>
             <div class="card-footer d flex justify content-end">
-                    <a href="mailto:email@example.com?subject=Made-Up Boathouse reservation request" class="btn btn-primary me-2">Email</a>
-                <button class="btn btn-danger">Delete</button>   
+                <div style="display: inline-block;">
+                    <!--email button opens users preffered email application to email client easily-->
+                    <a href="mailto:{{req.user.email}}?subject=Made-Up Boathouse reservation request" class="btn btn-primary me-2">Email</a>
+                </div>
+                <div style="display: inline-block;">
+                    <!-- deletes with use of button from both the database and the admin_reservation_list-->
+                    <form action="/delete_reservation" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{ req.user.id }}">
+                        <button class="btn btn-danger">Delete</button>  
+                    </form>
+                </div>
             </div>
         </div>
     {% empty %}
+    <!--Message that will display if there are not any reservation request-->
         <li>No Upcoming Reservation Requests.</li>
     {% endfor %}
 {% endblock %}

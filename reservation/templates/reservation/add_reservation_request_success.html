@@ -1,10 +1,11 @@
 {% extends 'reservation/base.html' %}
 {% block content %}
-    <div class="sucess-card">
+    <div class="success-card">
     <h1>
         Reservation Request Recieved! 
     </h1>
     <p class ="confirmation-message">Your reservation request has been submitted successfully, you will be contacted soon.</p>
+    <!--echo back the form submission after the successful database add-->
     {% if reservation_data %}
         <div class="reservation-details">
         </div>

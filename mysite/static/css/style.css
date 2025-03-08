@@ -28,20 +28,19 @@ body{
 .hours-banner{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: right;
-    font-size: 24px;
+    font-size: 18px;
 }
 
-.info-text-container{
-    display: flex;
+.info-text{
     justify-content: center;
     align-items: normal ;
-    height:40vh;
+    height:10vh;
     width: 200vh;
-    padding-left: 25%;
+    padding-left: 23%;
     padding-right: 25%;
 }
 
-.sucess-card{
+.success-card{
     max-width: 500px;
     margin: 40px auto;
     padding: 22px;
@@ -57,24 +56,9 @@ body{
     margin-bottom: 15px;
 }
 
-.reservation-details p{
-    padding: 50px;
-    font-size: 20px;
-    border-bottom: 1px solid whitesmoke;
-}
 
 .reservation-details p:last-child{
     border-bottom: 1px;
-}
-
-
-.login-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 50px;
-    
-    
 }
 
 .login-card{
@@ -83,18 +67,6 @@ body{
     border-radius: 20px;
     align-items: center;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.50);
-}
-
-.button-container{ 
-    padding-right: 15%;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    align-items: flex-end;
-    position: absolute;
-    top: 30%;
-    right: 15px;
-       
 }
 
 .email-button{
@@ -109,10 +81,11 @@ body{
     padding-right: 13%;
 }
 
-.weather-container{
-    position: absolute;
-    left: 10px;
-    top: 180px;
-    width: 150px;
-    margin-right: 5px;
+.reservation-request-info{
+    padding-top: 2%;
+    max-width: 60%;
+    margin:  auto;  
+  
+    
 }
+

@@ -1,51 +1,58 @@
 {% extends 'reservation/base.html'%}
 {% load static %}
-
 {% block title %} Reservation Information {% endblock %}
-
 {% block content %}
 <div class="container-fluid">
     <!-- Hours of operation-->
     <div class="hours-banner">
         <p><Strong>Boathouse Hours:</Strong> 8:00 AM - 8:00 PM</p>
     </div>
-    <div class="info-text-container">
+    <div class="container">
+        <!--Welcome message-->
         <div class="info-text">
             <h1 class="boathouse-header">Welcome to Made-Up Lake Boathouse</h1>
         </div>
     </div>    
     <!---boostrap carousel with the three lake photos-->
-    <div id="carouselFade" class="carousel slide carousel-fade mx-auto" style="max-width: 800px;" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/static/images/lake.jpg" class="d-block w-100" alt="lake wetland area">
-            </div>
-            <div class="carousel-item">
-                <img src="/static/images/lake2.jpg" class="d-block w-100" alt="fall trees with geese">
-            </div>
-            <div class="carousel-item">
-                <img src="/static/images/lake3.jpg" class="d-block w-100" alt="fall trees with geese">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div id="carouselFade" class="carousel slide carousel-fade mx-auto" style="max-width: 800px;" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/static/images/lake.jpg" class="d-block w-100" alt="lake wetland area">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/static/images/lake2.jpg" class="d-block w-100" alt="fall trees with geese">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/static/images/lake3.jpg" class="d-block w-100" alt="fall trees with geese">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+    </div> 
     <!---Area with reservation information-->
-    <div class="reservation-request-info">
-        <h2 class="reservation-header">Watercraft Reservation</h2>
-        <p class="reservation-content">
-            Our rentals include Kayaks, Canoes and Paddleboards. Rentals are for 1 or 2 hour slots. Rentals are <strong>$10.00</strong> an hour. Your rental includes life vests. Please note that children must wear a provided life vest at all times while on the water. 
-        </p>
-        <!---Button for reservation request-->     
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reservationModal">
-                Request a Reservation
-        </button>
+    <div class="container">
+        <div class="reservation-request-info">
+            <h2 class="reservation-header">Watercraft Reservation</h2>
+            <p class="reservation-content">
+                Our rentals include Kayaks, Canoes and Paddleboards. Rentals are for 1 or 2 hour slots. Rentals are <strong>$10.00</strong> an hour. Your rental includes life vests. Please note that children must wear a provided life vest at all times while on the water. 
+            </p>
+        </div>
+        <!---Button for reservation request-->  
+        <div class="container text-center "> 
+            <button type="button" class="btn btn-primary mb-5" data-bs-toggle="modal" data-bs-target="#reservationModal">Request a Reservation</button>
+        </div>
     </div>
     <!--reservation form modal-->
     <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
@@ -80,5 +87,4 @@
             }
         });
     </script>
-
 {% endblock %}
