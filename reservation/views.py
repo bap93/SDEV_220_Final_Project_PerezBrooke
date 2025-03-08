@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from reservation.forms import ReservationRequestForm
 from django.http import HttpResponseRedirect, Http404
 from django.db import transaction
@@ -6,6 +6,8 @@ from .models import User, ReservationBoat, ReservationRequest, Boat
 from datetime import datetime
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
 import pytz
 
 

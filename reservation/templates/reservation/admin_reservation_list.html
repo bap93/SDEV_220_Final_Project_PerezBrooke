@@ -2,12 +2,23 @@
 {% load reservation_request_filters %}
 {% load static %}
 {% block content %}
-<div class = 'container mt-4'>
+<div class="container">
+    <div class="ml-auto">
+        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+        <script>
+            if (window.history.replaceState){
+                window.history.replaceState(null, null, window.location.href);
+            }
+        </script>
+    </div>
     <h2 class = 'mb-3'>Reservation Requests</h2>
     {% for req in reservation_requests %}
-        <div class = 'card mb-3 shadow-sm'>
-            <div class = 'card-body'>
-                <h5 class = 'card-title'><strong>Name:</strong> {{ req.user.first_name }} {{ req.user.last_name  }}<h/5>
+        <div class="card mb-3 shadow-sm">
+            <div clasd="card-body">
+                <h5 class="card-title"><strong>Name:</strong> {{ req.user.first_name }} {{ req.user.last_name  }}<h/5>
             <p class="'card-text">
                 <strong>Age:</strong> {{ req.user.age }}<br>
                 <strong>Email:</strong> {{ req.user.email }}<br>
@@ -22,9 +33,8 @@
                     <li>Paddle Boards: {{ req|get_boat_count:"Paddle Board" }}</li>
                 </ul>
             </div>
-            <div class ='card-footer d flex justify content-end'>
-                    <a href="mailto:email@example.com?subject=Made-Up Boathouse reservation request" class="btn btn-primary me-2">Email
-                    </a>
+            <div class="card-footer d flex justify content-end">
+                    <a href="mailto:email@example.com?subject=Made-Up Boathouse reservation request" class="btn btn-primary me-2">Email</a>
                 <button class="btn btn-danger">Delete</button>   
             </div>
         </div>
